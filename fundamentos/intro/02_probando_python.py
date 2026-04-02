@@ -13,12 +13,12 @@ print("¡Bienvenido a Python!")
 print("Ahora veremos un bucle que muestra los números del 1 al 10:")
 
 # Bucle for que recorre los números del 1 al 10
-num = input("Ingrese un número limite: ");
-for num in range(1, 11):
+num = int(input("Ingrese un número limite: "))
+for num in range(1, num + 1):
     print(f"El valor actual de num es: {num}")
 
 # Definimos una lista de días laborables
-semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
+semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 
 # Seleccionamos al azar un día de la semana
 dia = random.choice(semana)
@@ -29,5 +29,7 @@ if dia == "Lunes":
     print("¡Comenzamos la semana con buena energía!")
 elif dia == "Viernes":
     print("¡Cerramos la semana listos para un buen descanso!")
+elif dia == "Sábado " or dia == "Domingo":
+    print("¡Descansa todo lo que puedas!")
 else:
     print("¡Cada día es una nueva oportunidad de aprender!")
