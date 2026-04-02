@@ -42,23 +42,22 @@ persona["edad"] = 31 #Se modifica el valor del item edad a 31
 persona["ciudad"] = "Santiago" #Se agrega un nuevo item con un valor 
 del persona["ciudad"] #Se elimina el item completo 
 
-for i in range(5): #for range: Se crea bucle en rango 5 
-    print(i)
-    if i == 2: #
-        continue #
-    if i == 4: #
-        break #
-    print(i) #
+for i in range(5): # for range: Se crea bucle en rango 5 
+    if i == 2: # Se establece condición if == 2
+        continue # continue ignora el proceso y continua.
+    if i == 4: # Se establece condicón if i == 4
+        break # Si i = 4 se rempe el bucle entero
+    print(i) # Imprime el valor de i en cada iteración(hasta 4)
 
 
-contador = 0 #
-while contador < 3: #
-    print(f"while contador es: {contador}") #
-    contador += 1 #
+contador = 0 # Se crea una variable contador tipo númerico(int)
+while contador < 3: #Se crea bucle while con una condición 
+    print(f"while contador es: {contador}") # Imprime el contador en un mensaje concatenado con f"" string
+    contador += 1 # Incrementa el valor en 1 en cada iteración 
 
 
-def saludar_usuario(nombre): #
-    return f"Hola, {nombre}" #
+def saludar_usuario(nombre): # def - Palabra reservada para xcrear una función
+    return f"Hola, {nombre}" # Devuelve un valor de la función.
 
 
-print(saludar_usuario("Francisca")) #
+print(saludar_usuario("Francisca")) # Se imprime "hola fransisca" - return de la función
