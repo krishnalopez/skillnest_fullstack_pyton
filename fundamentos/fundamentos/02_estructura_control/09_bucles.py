@@ -16,7 +16,7 @@ for i in range(0, 15, 3):
 for i in range(10, 1, -3):
     print(i)
 #Imprime: 10, 7, 4
-
+#------------------------------recorrer bucle for-----------------------------------
 for letra in 'Python':
     print(letra)
 #Imprime: 'P', 'y', 't', 'h', 'o', 'n'
@@ -32,7 +32,7 @@ for verdura in lista:
 #Imprime: brócoli, pepino, pimiento
 
 tupla = ('fresa', 'manzana', 'cereza')
-
+#---------------------------------tuplas--------------------------------------------
 for i in range( len(tupla) ):
     print(i, tupla[i])
 #Imprime: 0 fresa, 1 manzana, 2 cereza
