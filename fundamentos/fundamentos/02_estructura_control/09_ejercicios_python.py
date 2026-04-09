@@ -1,30 +1,58 @@
 # 1. Números Pares Dinámicos
 # Desarrolla un programa que solicite al usuario cuántos números pares desea ver ($n$).
 # El programa debe imprimir los primeros $n$ números pares positivos.
-def parDinamico():
-    num = int(input("¿Cuántos números pares desea ver?"))#pedir un número al usuario
-for i in range(num + 1):
-    if
-
-
+def numerosDinamicos():
+    n = int(input("¿Cuántos números pares desea ver?"))#pedir un número al usuario
+    pares = []
+    for i in range (1, (n * 2) + 1):
+        if i % 2 == 0:
+            pares.append(i)
+    print(f"Mostrando pares: {pares}")
 # 2. Verificador de Edad y Acceso
 # Pide al usuario su año de nacimiento. Calcula su edad y muestra si es mayor de edad (18+).
 # Si tiene menos de 18, indica cuántos años le faltan para la mayoría de edad.
-
-
-
+def verificador_edad():
+    campo = input("Ingrese su año de nacimiento: ")
+    edad = 2026 - int(campo)
+    if campo == "":
+        print("Error")
+    elif edad >= 18:
+        print(f"Tienes acceso ya que tu edad es: {edad}")
+    elif edad > 0 and edad < 18:
+        print(f"No tines acceso: te falta {18 - edad} años.")
+    else:
+        print("Ingresa valores válidos")
 
 # 3. Calculadora de Descuentos
 # Solicita el precio de un producto y la cantidad comprada.
 # Si el total supera los $100, aplica un 15% de descuento. 
 # Muestra el subtotal, el descuento aplicado y el total final.
-
-
-
+def aplicarDescuento():
+    precio = float(input("Ingresa el precio del producto: "))
+    cantidad = int(input("Ingresar cantidad: "))
+    producto = precio * cantidad
+    if producto >= 100: 
+        descuento = producto * 0.15
+    else:
+        descuento = 0
+    total = producto - descuento
+    print(f"El subtotal es: {producto}. El descuento aplicado es: {descuento}. Y el total del producto ahoar es: {total} ")
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par, Negativo-Impar o Cero.
-
-
+def  clasificadorNum():
+    num = int(input("Ingrese un número"))
+    if num > 0 :
+        if num % 2 == 0:
+            print("Positivo - Par")
+        elif num % 2 == 1:
+            print("Postivo - Impar")
+    elif num < 0:
+        if num % 2 == 0:
+            print("Negativo-Par")
+        elif num % 2 == 1:
+            print("Negativo-Impar")
+    else:
+        print("Es 0")
 # 5. Tabla de Multiplicar Personalizada
 # Solicita un número entero y muestra su tabla de multiplicar del 1 al 12,
 # pero solo muestra los resultados que sean múltiplos de 3.
@@ -90,3 +118,41 @@ for i in range(num + 1):
 # Cuántos días la temperatura fue superior a 25 grados.
 # El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
 
+
+#Menu de navegación para ejercicios
+continuar = True
+while continuar:
+    print
+    print("---Ejercicio 1---")
+    print("---Ejercicio 2---")
+    print("---Ejercicio 3---")
+    print("---Ejercicio 4---")
+    print("---Ejercicio 5---")
+    print("---Ejercicio 6---")
+    print("---Ejercicio 7---")
+    print("---Ejercicio 8---")
+    print("---Ejercicio 9---")
+    print("---Ejercicio 10---")
+    print("---Ejercicio 11---")
+    print("---Ejercicio 12---")
+    print("---Ejercicio 13---")
+    print("---Ejercicio 14---")
+    print("---Ejercicio 15---")
+    opcion = input("\n---- Elige una opción: (1-15) (0 para salir) =")
+    if opcion == "1":
+        print("\nEjecutando ejercicio 1: ")
+        print(numerosDinamicos())
+    elif opcion == "2":
+        print("\nEjecutando ejercicio 2: ")
+        print(verificador_edad)
+    elif opcion == "3":
+        print("\nEjecutando ejercicio 3: ")
+        print(aplicarDescuento())
+    elif opcion == "4":
+        print("\nEjecutando ejercicio 4: ")
+        print(clasificadorNum())
+    elif opcion == "0":
+        print("Saliendo...")
+        continuar = False
+    else:
+        print("Opción no válida, intenta otra vez")
