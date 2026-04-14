@@ -75,64 +75,154 @@ def sumatoriaCentinela():
             break
         suma_total += n
     print(f"La suma total es: {suma_total}")
-# 7. Contador de Vocales
-# Pide al usuario una frase o palabra. Utiliza un bucle para recorrer la cadena y contar 
-# cuántas vocales tiene en total.
+#Ejercicio 7: Contador de Vocales
+'''Pide al usuario una frase o palabra. Utiliza un bucle para recorrer
+la cadena y contar cuántas vocales tiene en total.'''
 def contadorVocales():
-    texto = input("Ingresa una palabra o frase: ")
+    texto = input("Ingresa una frase o palabra: ").lower()
     vocales = 0
     for i in range(len(texto)):
-        #Repetir la condición con cada vocal
-        if texto [i] == "a" or texto [i] == "e" or texto [i] == "i" or texto [i] == "o" or texto [i] == "u":
-            #Repetir la condición pero con tilde
-            elif texto [i] == "á" or texto [i] == "é" or texto [i] == "í" or texto [i] == "ó" or texto [i] == "ú":
-# 8. Validación de Contraseña
-# Define una contraseña en una variable. Pide al usuario que la intente adivinar.
-# Tienes un máximo de 3 intentos; si falla los 3, bloquea el acceso.
+        #Detectar vocales
+        if texto[i] == "a" or texto[i] == "e" or texto[i] == "i" or texto[i] == "o" or texto[i] == "u":
+            vocales += 1
+        #Detectar vocales sin tilde
+        elif texto[i] == "á" or texto[i] == "é" or texto[i] == "í" or texto[i] == "ó" or texto[i] == "ú":
+            vocales += 1
+    print(f"Hay {vocales} vocales en total en el string '{texto}'")
 
+#Ejercicio 8: Validación de Contraseña
+'''Define una contraseña en una variable. Pide al usuario que la intente adivinar.
+Tienes un máximo de 3 intentos; si falla los 3, bloquea el acceso.'''
+def validarContrasena():
+    acceso = False
+    contrasena = "hola123"
+    for i in range(3):
+        contrasenaInput = input("Ingresa la contraseña: ")
+        if contrasenaInput == contrasena:
+            acceso = True
+            break
+        else:
+            print("Contraseña incorrecta.")
+    if acceso == True:
+        print("Acceso permitido.")
+    else:
+        print("Acceso bloqueado.")
 
+#Ejercicio 9: Registro de Nombres
+'''Crea un arreglo vacío. Pide al usuario que ingrese 5 nombres. Guárdalos en el arreglo y,
+al final, imprímelos en orden inverso al que fueron ingresados.'''
+def registroNombres():
+    registro = []
+    for i in range(5):
+        nombre = input("Ingresa un nombre: ")
+        registro.append(nombre)
+    registro.reverse()
+    for i in range(len(registro)):
+        print(registro[i])
 
-# 9. Registro de Nombres
-# Crea un arreglo vacío. Pide al usuario que ingrese 5 nombres. 
-# Guárdalos en el arreglo y, al final, imprímelos en orden inverso al que fueron ingresados.
-
-
-# 10. Promedio de Notas
-# Solicita al usuario cuántas notas desea ingresar. Almacena cada nota en un arreglo.
-# Al finalizar, calcula y muestra el promedio, la nota más alta y la más baja.
-
-
+#Ejercicio 10: Promedio de Notas
+'''Solicita al usuario cuántas notas desea ingresar. Almacena cada nota en un arreglo.
+Al finalizar, calcula y muestra el promedio, la nota más alta y la más baja.'''
+def promedioNotas():
+    notasLimit = int(input("Ingresa la cantidad límite de notas: "))
+    notas = []
+    valido = True
+    for i in range(notasLimit):
+        nota = float(input("Ingresa una nota: "))
+        if nota >= 1.0 and nota <= 7.0:
+            notas.append(nota)
+        else:
+            valido = False
+            break
+    if valido == True:
+        promedio = sum(notas) / len(notas)
+        alta = max(notas)
+        baja = min(notas)
+        print(f"El promedio final del alumno es de {promedio}, la nota más alta fue {alta} y la más baja fue {baja}")
+    else:
+        print("Ingresa una nota válida.")
 # 11. Filtro de Arreglos
 # Dado un arreglo de números generado por el usuario, crea un nuevo arreglo que contenga solo los
 # números que sean mayores a 50.
 # Muestra ambos arreglos.
-
-
+def filtroArreglos ():
+    cantidad = int(input("¿Cuantos números deseas ingresar?: "))
+    mayor50 = []
+    nUser = []
+    for i in range(1, cantidad + 1):
+        arrayUsuario = int(input("Ingrese un número: "))
+        if arrayUsuario > 50:
+            mayor50.append(arrayUsuario)
+        else:
+            nUser.append(arrayUsuario)
+            print(f"Valores ingresados por el usuario: {nUser} \nValores mayor a 50: {mayor50}")
 # 12. Buscador de Elementos
 # Crea una lista de 10 ciudades. Pide al usuario que ingrese el nombre de una ciudad y 
 # el programa debe decir si la ciudad se encuentra en la lista y en qué índice (posición) está.
-
-
-
+def buscadorElemento():
+    ciudades = ["Nairobi", "Tokio" , "Santiago", "Lima", "Caracas", "Rio", "Barlin", "Seul", "Buenos Aires"],
+    ciudad = input("Ingresar ciudad (con mayuscula al principio): ").capitalize()
+    esta = ciudades.index(ciudad)
+    if esta < len(ciudades):
+        print(f"Tu cuidad está en el arreglo, en la posicion {esta}")
+    else:
+        print("Tu ciudad no está en el arreglo")
 # 13. Simulación de Inventario
 # Crea dos arreglos: uno para nombres_productos y otro para precios. 
 # Permite al usuario ingresar 3 productos con sus precios. 
 # Luego, muestra una lista formateada: Producto: [Nombre] - Precio: $[Valor].
+def inventario():
+    nombres_productos = []
+    precios = []
+    for i in range(3):
+        nombre = input("Nombre del producto:")
+        precio = float(input("Precio: "))
+        nombres_productos.append(nombre)
+        precios.append(precio)
+    print("\nInventario:")
+    for i in range(3) :
+        print(f"Producto: {nombres_productos[i]} - Precio {precio[i]}")
+#Ejercicio 14: Generador de Lista de Compras
+'''Usa un bucle while para que el usuario agregue artículos a una lista de compras.
+El proceso termina cuando el usuario escribe "terminar".
+Al final, muestra la lista ordenada alfabéticamente.'''
+def listaCompras():
+    carrito = []
+    aniadiendoCarrito = True
+    while aniadiendoCarrito:
+        articulo = input("Agrega un articulo (o escribre 'terminar' para salir): ")
+        if articulo.lower() == "terminar":
+            break
+        elif articulo.strip() == "":
+            print("No puede estar vacío")
+        else:
+            carrito.append(articulo)
+    if len(carrito) > 0:
+        carrito.sort()
+        print(f"Carrito de compras: {carrito}")
 
-
-# 14. Generador de Lista de Compras
-# Usa un bucle while para que el usuario agregue artículos a una lista de compras. 
-# El proceso termina cuando el usuario escribe "terminar". Al final, muestra la lista ordenada alfabéticamente.
-
-
-
-# 15. Análisis de Temperaturas
-# Solicita las temperaturas de los 7 días de la semana y guárdalas en un arreglo. Muestra:
-# El promedio semanal.
-# Cuántos días la temperatura fue superior a 25 grados.
-# El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
-
-
+#Ejercicio 15: Análisis de Temperaturas
+'''Solicita las temperaturas de los 7 días de la semana y guárdalas en un arreglo. Muestra:
+El promedio semanal.
+Cuántos días la temperatura fue superior a 25 grados.
+El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).'''
+def analisisTemp():
+    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+    tempSemanal = []
+    superior25 = 0
+    for i in range(len(dias)):
+        temperatura = int(input(f"Ingresa la temperatura del día {dias[i]}: "))
+        tempSemanal.append(temperatura)
+        if temperatura > 25:
+            superior25 += 1
+    print(f"El promedio semanal fue de: {sum(tempSemanal) / len(tempSemanal)}°")
+    if superior25 > 1:
+        print(f"{superior25} días tuvieron una temperatura superior a 25°")
+    elif superior25 == 1:
+        print(f"Solo {superior25} día tuvo una temperatura superior a 25°")
+    else:
+        print("Ningún día tuvo una temperatura superior a 25°")
+    print(f"La temperatura más baja registrada fue de {min(tempSemanal)}°")
 #Menu de navegación para ejercicios
 continuar = True
 while continuar:
@@ -173,22 +263,31 @@ while continuar:
         print(sumatoriaCentinela())
     elif opcion == "7":
         print("\nEjecutando ejercicio 7: ")
-        print(tablaMultiplicar())
+        print(contadorVocales())
     elif opcion == "8":
         print("\nEjecutando ejercicio 8: ")
-        print(tablaMultiplicar())
+        print(validarContrasena())
     elif opcion == "9":
         print("\nEjecutando ejercicio 9: ")
-        print(tablaMultiplicar())
+        print(registroNombres())
     elif opcion == "10":
         print("\nEjecutando ejercicio 10: ")
-        print(tablaMultiplicar())
+        print(promedioNotas())
     elif opcion == "11":
         print("\nEjecutando ejercicio 11: ")
-        print(tablaMultiplicar())
+        print(filtroArreglos ())
     elif opcion == "12":
         print("\nEjecutando ejercicio 12: ")
-        print(tablaMultiplicar())
+        print(buscadorElemento())
+    elif opcion == "13":
+        print("\nEjecutando ejercicio 13: ")
+        print(inventario())
+    elif opcion == "14":
+        print("\nEjecutando ejercicio 14: ")
+        print(listaCompras())
+    elif opcion == "15":
+        print("\nEjecutando ejercicio 15: ")
+        print(analisisTemp())
     elif opcion == "0":
         print("Saliendo...")
         continuar = False
