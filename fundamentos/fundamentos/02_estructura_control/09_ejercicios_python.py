@@ -56,22 +56,36 @@ def  clasificadorNum():
 # 5. Tabla de Multiplicar Personalizada
 # Solicita un número entero y muestra su tabla de multiplicar del 1 al 12,
 # pero solo muestra los resultados que sean múltiplos de 3.
-
-
+def tablaMultiplicar():
+    num= int(input("Ingresar numero a trabajar: "))
+    for i in range (1, 13):
+        resultado = num * i
+        if resultado % 3 == 0:
+            print(f"Del {num} números son divisibles por 3 : {resultado}")
 
 # 6. Sumatoria con Centinela
 # Crea un programa que pida números continuamente y los sume. 
 # El ciclo debe terminar cuando el usuario ingrese un número negativo.
 # Al final, muestra la suma total (sin incluir el negativo).
-
-
-
+def sumatoriaCentinela():
+    suma_total = 0
+    while True:
+        n = float(input("Ingresa un número(negativo para salir):"))
+        if n < 0:
+            break
+        suma_total += n
+    print(f"La suma total es: {suma_total}")
 # 7. Contador de Vocales
 # Pide al usuario una frase o palabra. Utiliza un bucle para recorrer la cadena y contar 
 # cuántas vocales tiene en total.
-
-
-
+def contadorVocales():
+    texto = input("Ingresa una palabra o frase: ")
+    vocales = 0
+    for i in range(len(texto)):
+        #Repetir la condición con cada vocal
+        if texto [i] == "a" or texto [i] == "e" or texto [i] == "i" or texto [i] == "o" or texto [i] == "u":
+            #Repetir la condición pero con tilde
+            elif texto [i] == "á" or texto [i] == "é" or texto [i] == "í" or texto [i] == "ó" or texto [i] == "ú":
 # 8. Validación de Contraseña
 # Define una contraseña en una variable. Pide al usuario que la intente adivinar.
 # Tienes un máximo de 3 intentos; si falla los 3, bloquea el acceso.
@@ -151,6 +165,30 @@ while continuar:
     elif opcion == "4":
         print("\nEjecutando ejercicio 4: ")
         print(clasificadorNum())
+    elif opcion == "5":
+        print("\nEjecutando ejercicio 5: ")
+        print(tablaMultiplicar())
+    elif opcion == "6":
+        print("\nEjecutando ejercicio 6: ")
+        print(sumatoriaCentinela())
+    elif opcion == "7":
+        print("\nEjecutando ejercicio 7: ")
+        print(tablaMultiplicar())
+    elif opcion == "8":
+        print("\nEjecutando ejercicio 8: ")
+        print(tablaMultiplicar())
+    elif opcion == "9":
+        print("\nEjecutando ejercicio 9: ")
+        print(tablaMultiplicar())
+    elif opcion == "10":
+        print("\nEjecutando ejercicio 10: ")
+        print(tablaMultiplicar())
+    elif opcion == "11":
+        print("\nEjecutando ejercicio 11: ")
+        print(tablaMultiplicar())
+    elif opcion == "12":
+        print("\nEjecutando ejercicio 12: ")
+        print(tablaMultiplicar())
     elif opcion == "0":
         print("Saliendo...")
         continuar = False
