@@ -20,17 +20,16 @@ print(result1)
 #Ejercicio 2.........................................
 
 # Analiza publicaciones
-def suma_y_resta(num):
-    suma + list[0] + list[1]
-
-resta = list[0] - list[1]
-print(f"suma : {suma}")
-return resta 
+def suma_y_resta(list):
+    suma = list[0] + list[1]
+    resta = list[0] - list[1]
+    print(f"suma : {suma}")
+    return resta 
 
 def ejercicio2():
-
-resta = suma_y_resta([120, 115])
-print(f"retorno / resta: {resta}")
+    resultado = suma_y_resta([120, 115])
+    print(resultado)
+    pass
 # Imprime: 235 y retorna: 5
 
 #Ejercicio 3...........................................
@@ -63,15 +62,14 @@ def valores_multiplicados_segundos(lista):
         return nuevaLista
 
 def ejercicio4():
-    result1 = valore_multiplicados_segundos([100, 3, 50, 20])
+    result1 = valores_multiplicados_segundos([100, 3, 50, 20])
     print(result1)
     print()
     #imprime: 4 y retorna: [300, 9, 150, 60]
-    result2 = valores_multiplicados_segundo([100])
+    result2 = valores_multiplicados_segundos([100])
     print(result2)
     #imprime 1 y retorna []
-
-valores_multiplicados_segundo([100, 3, 50, 20])
+    
 # Imprime: 4 y retorna: [300, 9, 150, 60]
 # Imprime: 1 y retorna: []
 
@@ -108,19 +106,19 @@ while continuar :
     opcion = input("\n---Elige una opcion: (1-5) (0 para salir) = ")
     if opcion == "1":
         print("\nEjecutando ejercicio 1: ")
-        print(numerosDinamicos())
+        print(multiplica_por_2(5))
     elif opcion == "2":
         print("\nejecutando ejercicio 2: ")
-        print()
+        print(suma_y_resta())
     elif opcion == "3":
         print("\nejecutando ejercicio 3: ")
-        print()
+        print(sumatoria_menos_longitud())
     elif opcion == "4":
         print("\nejecutando ejercicio 4: ")
-        print()
+        print(valores_multiplicados_segundos())
     elif opcion == "5":
         print("\nejecutando ejercicio 5: ")
-        print()
+        print(valor_multiplicado_longitud())
     elif opcion == "0":
         print("Saliendo...")
         continuar = False 
