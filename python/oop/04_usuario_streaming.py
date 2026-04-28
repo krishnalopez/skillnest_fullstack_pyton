@@ -25,23 +25,27 @@ class UsuarioStreaming:
         self.email = email
         self.suscripcion = suscripcion
         self.lista_reproduccion = []
-
-
     def agregar_a_lista(self, titulo):
         """Agrega un contenido a la lista de reproducción del usuario."""
-        self.titulo = titulo
-
-
+        self.lista_reproduccion.append(titulo)
+        print(f"Título '{titulo}' agregado correctamente.")
     def ver_contenido(self, titulo):
         """Simula que el usuario reproduce un contenido."""
-        pass
-
-
+        if titulo in self.lista_reproduccion:
+            print(f"El usuario {self.nombre} esta viendo '{titulo}'")
+        else:
+            print(f"Titulo no encontrado {titulo}")
     def cambiar_suscripcion(self, nueva_suscripcion):
         """Cambia el tipo de suscripción del usuario."""
-        pass
-
-
+        susAntigua = self.suscripcion
+        self.suscripcion = nueva_suscripcion
+        print(f"suscpción cambio de {susAntigua} a {nueva_suscripcion}")
     def mostrar_info_usuario(self):
         """Muestra la información del usuario y su lista de reproducción."""
-        pass
+        print(f"Nombre: {self.nombre}")
+        print(f"Email: {self.email}")
+        print(f"suscripcion: {self.suscripcion}")
+        if len(self.lista_reproduccion) == 0:
+            print("La lista de reproducción esta vacía.")
+        else:
+            print(f"Lista de reproducción: \n- {"\n-".join(self.lista_reproduccion)}")
