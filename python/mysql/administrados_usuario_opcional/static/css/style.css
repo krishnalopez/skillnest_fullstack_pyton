@@ -129,3 +129,222 @@ button {
     right: 20px;
     box-shadow: 1px 1px 2px #aaa inset;
 }
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 700px;
+    margin: 20px auto;
+}
+
+th,
+td {
+    border: 2px solid gray;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #d9d9d9;
+}
+
+td {
+    background: #f2f2f2;
+}
+
+.acciones {
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 700px;
+    margin: 20px auto;
+}
+
+th,
+td {
+    border: 2px solid gray;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #d9d9d9;
+}
+
+td {
+    background: #f2f2f2;
+}
+
+.acciones {
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.nombre {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 100px;
+}
+
+.email2 {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 120px;
+}
+
+.contra2 {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 60px;
+}
+
+.cofcontra {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 20px;
+}
+
+.seleccionar {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    gap: 20px;
+}
+
+.boton-crear {
+    margin-left: 120px;
+}
+
+.cuadrado {
+    width: 700px;
+    margin: 30px auto;
+    padding: 10px;
+    margin-top: 100px;
+}
+
+.boton {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.boton button {
+    background: #f5f5f5;
+    border: 3px solid black;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 2px solid gray;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #d9d9d9;
+}
+
+td {
+    background: #f2f2f2;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    font-size: 22px;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 50px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 350px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.Iniciar-secion {
+    display: flex;
+    flex-direction: column;
+}
+
+.registrar {
+    display: flex;
+    flex-direction: column;
+}
+
+.contra {
+    display: flex;
+    margin: 10px;
+    gap: 20px;
+}
+
+.email {
+    display: flex;
+    margin: 10px;
+    gap: 80px;
+}
+
+.nombre {
+    display: flex;
+    margin: 10px;
+    gap: 100px;
+}
+
+.email2 {
+    display: flex;
+    margin: 10px;
+    gap: 120px;
+}
+
+.contra2 {
+    display: flex;
+    margin: 10px;
+    gap: 60px;
+}
+
+.cofcontra {
+    display: flex;
+    margin: 10px;
+    gap: 20px;
+}
