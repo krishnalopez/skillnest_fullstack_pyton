@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 55px;
+}
+header h1{
+   color: blue;
+   font-size: 4.0rem;
+}
+header p{
+    font-size: 1.2rem;
+}
+
+.btn-ver{
+    background-color: rgb(69, 69, 240);
+}

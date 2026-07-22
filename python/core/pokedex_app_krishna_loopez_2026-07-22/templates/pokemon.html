@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1><img src="{{ url_for('static', filename='img/Pokebola.png') }}" alt="pokebola">Pokédex</h1>
+        <p>Todos los Pokémon</p>
+    </header>
+    <nav>
+        <a href="http://127.0.0.1:5000/pokemon" class="btn-ver"</a>
+        <a href="http://127.0.0.1:5000/pokemon" class="btn-primero">ver 5 primero</a>
+    </nav>
+</body>
+</html>
