@@ -1,19 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
+    <meta name="author" content="krishnalopez@liceovvh.cl
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
-    <header>
-        <h1><img src="{{ url_for('static', filename='img/Pokebola.png') }}" alt="pokebola">Pokédex</h1>
-        <p>Todos los Pokémon</p>
+    <header class="main-header">
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='img/Pokebola.png') }}" alt="Logo Pokédex" width="50">
+            <h1>Pokédex</h1>
+        </div>
     </header>
-    <nav>
-        <a href="http://127.0.0.1:5000/pokemon" class="btn-ver"</a>
-        <a href="http://127.0.0.1:5000/pokemon" class="btn-primero">ver 5 primero</a>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <p class="nav-title"><strong>{{ titulo }}</strong></p>
+            <div class="nav-buttons">
+                <a href="{{ url_for('listar_todos') }}" class="btn-nav btn-blue">
+                    <i class="bi bi-list-ul"></i> Ver todos
+                </a>
+                <a href="{{ url_for('obtener_limite', cantidad=5) }}" class="btn-nav btn-green">
+                    <i class="bi bi-funnel-fill"></i> Ver 5 primeros
+                </a>
+            </div>
+        </div>
     </nav>
+
+    <main class="main-content">
+        <div class="cards-container">
+            {% for p in poke %}
+            <div class="pokemon-card">
+                <div class="card-header">
+                    <p class="pokemon-id">#{{ p.id }}</p>
+                    <img class="pokemon-img" src="{{ url_for('static', filename='img/' + p.imagen) }}"
+                        alt="Imagen de {{ p.nombre }}" width="100">
+                </div>
+
+                <div class="card-body">
+                    <h3 class="pokemon-name">{{ p.nombre }}</h3>
+                    
+                    <div class="pokemon-types">
+                        {% for t in p.tipo.split('/') %}
+                        <span class="type-badge {{ colores[t.lower()] }}">{{ t }}</span>
+                        {% endfor %} 
+                    </div>
+
+                    <div class="stat-bar-container">
+                        <p class="text-muted"><i class="bi bi-lightning-fill"></i> Poder</p>
+                        <div class="power-bar">
+                            <div class="power-fill" style="width: {{ p.poder }}px">{{ p.poder }}</div>
+                        </div>
+                    </div>
+
+                    <div class="pokemon-stats">
+                        <div class="stat-box">
+                            <p class="text-muted"><i class="fa-solid fa-ruler-vertical"></i> Altura</p>
+                            <p><strong>{{ p.altura }}</strong></p>
+                        </div>
+                        <div class="stat-box">
+                            <p class="text-muted"><i class="fa-solid fa-weight-hanging"></i> Peso</p>
+                            <p><strong>{{ p.peso }}</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="{{ url_for('ver_detalle_pokemon', id=p.id) }}" class="btn-details">Ver Detalles</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

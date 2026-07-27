@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="krishnalopez@liceovvh.cl">
+    <title>Pokédex - Error</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <main class="error-page">
+        <div class="error-card">
+            <h1 class="error-title">¡Oh no!</h1>
+            <p class="error-message">No pudimos encontrar información sobre "{{ mensaje }}" en nuestra Pokédex.</p>
+            <p class="error-alert"><i class="bi bi-exclamation-triangle-fill"></i> Pokémon no encontrado</p>
+            <p class="error-description">Tal vez este Pokémon aún no ha sido descubierto, o quizás has escrito mal su nombre.</p>
+            
+            <a href="{{ url_for('listar_todos') }}" class="btn-nav btn-blue">
+                <i class="bi bi-house-fill"></i> Volver a la Pokédex
+            </a>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
