@@ -1,0 +1,367 @@
+/* ==================================================
+   ESTILOS GENERALES
+================================================== */
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ==================================================
+   HERO / ENCABEZADO
+================================================== */
+
+.hero {
+    background: linear-gradient(135deg, #198754, #20c997);
+    padding: 70px 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+
+/* ==================================================
+   TARJETAS DE FRUTAS
+================================================== */
+
+.card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+
+/* ==================================================
+   IMÁGENES DE LAS FRUTAS
+================================================== */
+
+.card-img-top {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+
+/* ==================================================
+   CONTENIDO DE LAS TARJETAS
+================================================== */
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    color: #198754;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 1.1rem;
+}
+
+
+/* ==================================================
+   FORMULARIOS
+================================================== */
+
+.form-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.2);
+}
+
+
+/* ==================================================
+   BOTONES
+================================================== */
+
+.btn {
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 10px 18px;
+    transition: all 0.3s ease;
+}
+
+.btn-success {
+    background-color: #198754;
+    border-color: #198754;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+    border-color: #157347;
+    transform: scale(1.03);
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: scale(1.03);
+}
+
+
+/* ==================================================
+   BOTÓN VER PEDIDO
+================================================== */
+
+.container > .text-center {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+
+/* ==================================================
+   RESUMEN DE ORDEN
+================================================== */
+
+.order-summary {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.order-summary h4 {
+    color: #212529;
+}
+
+.order-summary h2 {
+    color: #198754;
+}
+
+
+/* ==================================================
+   TABLA DEL PEDIDO
+================================================== */
+
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead th {
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+
+/* ==================================================
+   IMAGEN DE FRUTA EN CHECKOUT
+================================================== */
+
+.checkout-fruta {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+}
+
+
+/* ==================================================
+   BADGES
+================================================== */
+
+.badge {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+
+/* ==================================================
+   ALERTAS
+================================================== */
+
+.alert {
+    border-radius: 15px;
+    padding: 30px 20px;
+}
+
+.alert h4 {
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   NAVBAR
+================================================== */
+
+.navbar {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #20c997 !important;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer {
+    margin-top: 50px;
+    background-color: #212529;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 50px 15px;
+    }
+
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .card-img-top {
+        height: 200px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .checkout-fruta {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-img-top {
+        height: 180px;
+    }
+
+}
+
+
+/* ==================================================
+   ANIMACIÓN DE LAS TARJETAS
+================================================== */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.card {
+    animation: aparecer 0.5s ease;
+}
+
+
+/* ==================================================
+   ESTILO DE SCROLL
+================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ==================================================
+   SELECCIÓN DE TEXTO
+================================================== */
+
+::selection {
+    background-color: #198754;
+    color: white;
+}

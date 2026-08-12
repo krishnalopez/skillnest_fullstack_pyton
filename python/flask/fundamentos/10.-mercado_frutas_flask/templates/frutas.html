@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}
+Frutas
+{% endblock %}
+
+{% block content %}
+
+<!-- ==================================================
+     ENCABEZADO
+=================================================== -->
+
+<header class="hero text-center text-white">
+
+    <div class="container">
+
+        <h1 class="display-5 fw-bold">
+            🍎 Mercado de Frutas
+        </h1>
+
+        <p class="lead">
+            Selecciona las frutas que deseas comprar.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- ==================================================
+     CATÁLOGO DE FRUTAS
+=================================================== -->
+
+<div class="container my-5">
+
+    <div class="row g-4">
+
+        {% for fruta in frutas %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card shadow border-0 h-100">
+
+                <!-- IMAGEN -->
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/' + fruta.imagen
+                    ) }}"
+                    class="card-img-top"
+                    alt="{{ fruta.nombre }}"
+                >
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="card-body text-center">
+
+                    <h4 class="card-title fw-bold">
+                        {{ fruta.nombre }}
+                    </h4>
+
+                    <p class="card-text text-muted">
+                        Precio:
+                        <strong class="text-success">
+                            ${{ "%.2f"|format(fruta.precio) }}
+                        </strong>
+                    </p>
+
+
+                    <!-- FORMULARIO DE COMPRA -->
+
+                    <form action="{{ url_for('agregar') }}" method="POST">
+
+                        <input
+                            type="hidden"
+                            name="id"
+                            value="{{ fruta.id }}"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="nombre"
+                            value="{{ fruta.nombre }}"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="precio"
+                            value="{{ fruta.precio }}"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="imagen"
+                            value="{{ fruta.imagen }}"
+                        >
+
+
+                        <!-- CANTIDAD -->
+
+                        <div class="mb-3">
+
+                            <label
+                                for="cantidad{{ fruta.id }}"
+                                class="form-label"
+                            >
+                                Cantidad
+                            </label>
+
+                            <input
+                                type="number"
+                                id="cantidad{{ fruta.id }}"
+                                name="cantidad"
+                                class="form-control text-center"
+                                value="1"
+                                min="1"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- BOTÓN -->
+
+                        <button
+                            type="submit"
+                            class="btn btn-success w-100"
+                        >
+
+                            <i class="bi bi-cart-plus-fill"></i>
+
+                            Agregar al carrito
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ==================================================
+         BOTÓN VER PEDIDO
+    =================================================== -->
+
+    <div class="text-center mt-5">
+
+        <a
+            href="{{ url_for('pedido') }}"
+            class="btn btn-primary btn-lg"
+        >
+
+            <i class="bi bi-cart-check-fill"></i>
+
+            Ver mi pedido
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
