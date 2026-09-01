@@ -1,43 +1,95 @@
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
 datos = [
-    {"nombre": "Spotify", "usuarios": "515M", "fundado": "2006", "pais": "Suecia"},
-    {"nombre": "Netflix", "usuarios": "247M", "fundado": "1997", "pais": "EE.UU."},
-    {"nombre": "YouTube", "usuarios": "2.5B", "fundado": "2005", "pais": "EE.UU."},
-    {"nombre": "Twitch", "usuarios": "140M", "fundado": "2011", "pais": "EE.UU."},
-    {"nombre": "tiktok", "usuarios": "1.7B", "fundado": "2016", "pais": "China"},
-    {"nombre": "instagram", "usuarios": "2.35B", "fundado": "2010", "pais": "EE.UU."},
-    {"nombre": "discord", "usuarios": "250M", "fundado": "2015", "pais": "EE.UU."},
+    {"nombre": "Spotify", "img": "Spotify.png", "usuarios": "515M", "fundado": "2006", "pais": "Suecia"},
+    {"nombre": "Netflix", "img": "netflix.png", "usuarios": "247M", "fundado": "1997", "pais": "EE.UU."},
+    {"nombre": "YouTube", "img": "youtube.png", "usuarios": "2.5B", "fundado": "2005", "pais": "EE.UU."},
+    {"nombre": "Twitch", "img": "twitch.png", "usuarios": "140M", "fundado": "2011", "pais": "EE.UU."},
+    {"nombre": "TikTok", "img": "TikTok.png", "usuarios": "1.7B", "fundado": "2016", "pais": "China"},
+    {"nombre": "Instagram", "img": "instagram.png", "usuarios": "2.35B", "fundado": "2010", "pais": "EE.UU."},
+    {"nombre": "Discord", "img": "discord.png", "usuarios": "250M", "fundado": "2015", "pais": "EE.UU."},
 ]
 
+@app.route('/')
+def inicio():
+    return render_template('tabla.html', 
+                            datos=datos, 
+                            columna='nombre', 
+                            direccion='asc',
+                            pais_sel='todos',
+                            texto="Mostrando todas las plataformas (7)")
 
-def limpiar_usuarios(v):
-    v = v.upper().strip()
-    if 'B' in v: return float(v.replace('B', '')) * 1000000000
-    if 'M' in v: return float(v.replace('M', '')) * 1000000
-    return 0.0
+@app.route('/enviar', methods=['POST'])
+def procesar():
+    # 1. Obtener valores del formulario
+    pais = request.form.get('paises', 'todos')
+    columna = request.form.get('tabla', 'nombre')
+    direccion = request.form.get('orden', 'asc')
 
-@app.route("/")
-@app.route("/tabla")
-def mostrar_plataformas():
-    p_sel = request.args.get("pais", "todos")
-    o_por = request.args.get("ordenar", "nombre")
-    direc = request.args.get("direccion", "asc")
-    p_unicos = sorted(list(set(d["pais"] for d in datos)))
-    d_filtrados = datos.copy()
-    if p_sel != "todos":
-        d_filtrados = [d for d in d_filtrados if d["pais"] == p_sel]
-    es_desc = (direc == "dsc")
-    if o_por == "usuarios":
-        d_filtrados.sort(key = lambda x: limpiar_usuarios(x["usuarios"]), reverse = es_desc)
-    elif o_por == "fundado":
-        d_filtrados.sort(key = lambda x: int(x["fundado"]), reverse = es_desc)
+    # 2. Normalizar país
+    if pais == 'todos':
+        pais_filtro = 'todos'
+        filtrados = datos
     else:
-        d_filtrados.sort(key = lambda x: x["nombre"].lower(), reverse = es_desc)
+        pais_filtro = pais
+        filtrados = []
 
-    return render_template("tabla.html", plataformas = d_filtrados, paises = p_unicos, pais_sel = p_sel, ordenar_sel = o_por, direccion_sel = direc)
+        for p in datos:
+            if p['pais'] == pais:
+                filtrados.append(p)
 
+    # 3. Ordenar
+    invertir = (direccion == 'desc')
+    # key=lambda x: x[columna]: sirve para ordenar o buscar en una lista según el contenido de una columna o clave específica.
+    datos_ordenados = sorted(filtrados, key=lambda x: x[columna], reverse=invertir)
 
-if __name__ == "__main__":
-   app.run(debug=True)
+    # 4. Mensaje
+    total = len(datos_ordenados)
+    
+    if pais_filtro == 'todos':
+        nombre_pais = 'Todos'
+    else:
+        nombre_pais = pais
+
+    if columna == 'fundado':
+        columna_nombre = 'Año Fundación'
+    else:
+        columna_nombre = columna.capitalize()  #m método que convierte el primer carácter de un texto en mayúscula y todos los demás en minúsculas
+
+    if direccion == 'asc':
+        direccion_texto = 'Ascendente'
+    else:
+        direccion_texto = 'Descendente'
+
+    # Mensaje final
+    texto = f"Mostrando {total} plataformas de {nombre_pais} ordenadas por {columna_nombre} ({direccion_texto})"
+
+    # 5. Renderizar pasando todos los valores para mantener la selección
+    return render_template('tabla.html', 
+                            datos=datos_ordenados, 
+                            columna=columna,     
+                            direccion=direccion,   
+                            pais_sel=pais_filtro,
+                            texto=texto)
+
+# extraa para detalles
+@app.route("/<string:name>")
+def nombre(name):
+    for item in datos:
+        if item["nombre"].lower() == name.lower():
+            return render_template('tabla.html', 
+                                    datos=[item], 
+                                    columna='nombre', 
+                                    direccion='asc',
+                                    texto=f"Mostrando a {item['nombre']}")
+    return render_template('tabla.html', 
+                            datos=datos, 
+                            columna='nombre', 
+                            direccion='asc',
+                            pais_sel='todos',
+                            texto="Plataforma no encontrada")
+
+if __name__ == '__main__':
+    app.run(debug=True)
