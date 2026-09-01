@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas Digitales</title>
+    <meta name="author" content="araelanabalon@liceovvh.cl">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container text-center my-4">
+            <h1 class="display-4 fw-bold text-primary"><i class="bi bi-table"></i> Plataformas Digitales</h1>
+            <p class="lead">Visualización de datos de las principales plataformas digitales</p>
+        </div>
+    </header>
+    <main>
+        <section class="filtro-orden my-4">
+            <form action="" class="container border rounded p-3" method="get">
+                <h2><i class="bi bi-funnel-fill"></i> Filtros y Ordenamiento</h2>
+                <div class="d-flex gap-3 justify-content-between">
+                    <div class="form-option w-100 flex-fill"> <label for="pais" class="d-block">Filtrar por
+                            país:</label> <select name="pais" id="pais" class="w-100 form-select"
+                            onchange="this.form.submit()">
+                            <option value="todos" {% if pais_sel=='todos' %}selected{% endif %}>Todos los países
+                            </option> {% for pais in paises %} <option value="{{ pais }}" {% if pais_sel==pais
+                                %}selected{% endif %}>{{ pais }}</option> {% endfor %}
+                        </select> </div>
+                    <div class="form-option w-100 flex-fill"> <label for="ordenar" class="d-block">Ordenar por:</label>
+                        <select name="ordenar" id="ordenar" class="w-100 form-select" onchange="this.form.submit()">
+                            <option value="nombre" {% if ordenar_sel=='nombre' %}selected{% endif %}>Nombre</option>
+                            <option value="usuarios" {% if ordenar_sel=='usuarios' %}selected{% endif %}>Usuarios
+                            </option>
+                            <option value="fundado" {% if ordenar_sel=='fundado' %}selected{% endif %}>Año Fundación
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-option w-100 flex-fill"> <label for="direccion" class="d-block">Dirección:</label>
+                        <select name="direccion" id="direccion" class="w-100 form-select" onchange="this.form.submit()">
+                            <option value="asc" {% if direccion_sel=='asc' %}selected{% endif %}>Ascendente</option>
+                            <option value="dsc" {% if direccion_sel=='dsc' %}selected{% endif %}>Descendente</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section class="tabla my-4">
+            <div class="container border rounded px-3 pt-3">
+                <table class="table w-100">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" class="dropdown"> <a href="#"
+                                    class="text-decoration-none text-white dropdown-toggle" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">Nombre</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="?pais={{ pais_sel }}&ordenar=nombre&direccion=asc">Ordenar A-Z</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="?pais={{ pais_sel }}&ordenar=nombre&direccion=dsc">Ordenar Z-A</a>
+                                    </li>
+                                </ul>
+                            </th>
+                            <th scope="col"><a href="#" class="text-decoration-none text-white">Usuarios</a></th>
+                            <th scope="col"><a href="#" class="text-decoration-none text-white">Año Fundación</a></th>
+                            <th scope="col"><a href="#" class="text-decoration-none text-white">País</a></th>
+                            <th scope="col"><a href="#" class="text-decoration-none text-white">Detalles</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for plataforma in plataformas %}
+                        <tr class="align-middle">
+                            <!-- Celda combinada con Logo + Nombre -->
+                            <th scope="row">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://cdn.simpleicons.org/{{ plataforma.nombre | lower }}"
+                                        alt="Logo {{ plataforma.nombre }}"
+                                        style="width: 20px; height: 20px; margin-right: 10px;">
+                                    <span>{{ plataforma.nombre }}</span>
+                                </div>
+                            </th>
+
+                            <td><span class="badge bg-primary"> {{plataforma.usuarios}} </span></td>
+                            <td> {{plataforma.fundado}} </td>
+                            <td><span class="badge bg-secondary"> {{plataforma.pais}} </span></td>
+                            <td>
+                                <a href="" class="btn btn-outline-info">
+                                    <i class="bi bi-info-circle-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-end border-0 align-bottom p-0 pt-5">Mostrando <span>{{
+                                    plataformas | length}}</span> plataformas</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container text-center my-4">
+            <h3 class="lead">Visualización de datos desarrollada con Flask y Bootstrap.</h3>
+            <p class="lead">Los datos mostrados son ficticios y con fines educativos.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/bootstrap.bundle.min.js') }}"></script>
+</body>
+
+</html>
