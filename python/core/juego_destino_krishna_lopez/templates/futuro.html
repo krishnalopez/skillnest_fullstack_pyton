@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Destino ha sido Revelado</title>
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="d-flex align-items-center justify-content-center min-vh-100 py-4">
+
+    <div class="card tarjeta-revelacion shadow-lg border-0 text-center">
+        
+        <!-- Encabezado -->
+        <div class="cabecera-mistica text-white p-4">
+            <div class="caja-icono-header sol-mistico mb-3 mx-auto">
+                <i class="bi bi-sun-fill fs-3"></i>
+            </div>
+            <h1 class="h3 fw-bold mb-1">Tu Destino ha sido Revelado</h1>
+            <p class="small text-white-50 m-0">Las estrellas han hablado, {{ nombre }}</p>
+        </div>
+
+        <!-- Cuerpo -->
+        <div class="card-body p-4 p-md-5 bg-white">
+            
+            <!-- Mensaje de destino (principal) -->
+            <div class="contenedor-prediccion p-3 mb-4 text-start">
+                <div class="d-flex align-items-start gap-2">
+                    <i class="bi bi-star-fill text-success fs-5"></i>
+                    <p class="m-0 text-dark texto-peso-medio">
+                        {{ destino }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tarjetas de Color y Animal -->
+            <div class="row g-3 mb-4">
+                <!-- Color -->
+                <div class="col-6">
+                    <div class="tarjeta-informacion p-3 text-start h-100">
+                        <div class="d-flex align-items-center gap-2 mb-2 texto-morado fw-bold">
+                            <i class="bi bi-palette-fill"></i>
+                            <span class="fw-bold">Tu Color</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="circulo-color me-2 bg-{{ color }}"></span>
+                        </div>
+                        <p class="small text-muted mb-0">
+                            Tu preferencia por el color <strong>{{ color }}</strong> revela que <strong>{{ mensaje_color }}</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Animal -->
+                <div class="col-6">
+                    <div class="tarjeta-informacion p-3 text-start h-100">
+                        <div class="d-flex align-items-center gap-2 mb-2 texto-morado fw-bold">
+                            <i class="bi bi-paw-fill"></i>
+                            <span class="fw-bold">Tu Animal</span>
+                        </div>
+                        <p class="small text-muted mb-0 mt-3">
+                            Tu conexión con el <strong>{{ animal }}</strong> simboliza que <strong>{{ mensaje_animal }}</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Número de la suerte -->
+            <div class="my-4">
+                <h6 class="texto-morado fw-bold mb-3">Tu número de la suerte</h6>
+                <div class="circulo-numero-suerte mx-auto d-flex align-items-center justify-content-center">
+                    {{ numero_suerte }}
+                </div>
+                <p class="small text-muted mt-2">Este número te acompañará en momentos importantes.</p>
+            </div>
+
+            <!-- Mensaje personalizado por edad -->
+            <div class="bloque-edad p-3 mb-4 text-center">
+                <p class="small m-0 text-dark">
+                    A tus <strong>{{ edad }} años</strong>, estás en un momento favorable para aprovechar nuevas oportunidades.
+                </p>
+            </div>
+
+            <!-- Botón para volver al formulario -->
+            <a href="{{ url_for('index') }}" class="btn boton-morado w-100 py-3 fw-bold rounded-3 text-decoration-none d-block">
+                <i class="bi bi-arrow-clockwise me-2"></i>Consultar de nuevo
+            </a>
+
+            <!-- Pie de página -->
+            <div class="mt-4 pt-2">
+                <p class="text-muted texto-micro m-0">Las estrellas te han hablado hoy, {{ nombre }}.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

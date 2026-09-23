@@ -1,0 +1,173 @@
+/* Importar Tipografía */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0b0c1b;
+    /* Fondo de estrellas */
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #ddd, transparent),
+        radial-gradient(1px 1px at 200px 100px, #fff, transparent),
+        radial-gradient(2px 2px at 250px 50px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 300px 120px, #eee, transparent),
+        radial-gradient(1px 1px at 350px 20px, #fff, transparent),
+        radial-gradient(2px 2px at 380px 90px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 420px 60px, #eee, transparent);
+    background-size: 450px 180px;
+    background-repeat: repeat;
+    color: #333;
+}
+
+/* Tarjeta Principal */
+.oraculo-card,
+.tarjeta-revelacion {
+    max-width: 480px;
+    width: 100%;
+    border-radius: 20px !important;
+    overflow: hidden;
+    background: transparent;
+}
+
+/* Encabezado Místico Oscuro */
+.encabezado-esoterico,
+.cabecera-mistica {
+    background: linear-gradient(180deg, #18122B 0%, #251B37 100%);
+    border-bottom: none;
+}
+
+/* Iconos superiores redondos */
+.contenedor-icono-cabecera,
+.caja-icono-header {
+    width: 50px;
+    height: 50px;
+    background-color: #6f42c1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(111, 66, 193, 0.5);
+}
+
+.contenedor-icono-cabecera.sol-mistico,
+.caja-icono-header.sol-mistico {
+    background-color: #ffc107;
+    color: #18122B;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+}
+
+/* Inputs Personalizados */
+.grupo-entrada-estilizado {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    padding: 4px 8px;
+}
+
+.grupo-entrada-estilizado .form-control,
+.grupo-entrada-estilizado .form-select {
+    background: transparent;
+    border: none;
+    box-shadow: none !important;
+}
+
+.texto-micro,
+.fuente-pequena-sub {
+    font-size: 0.75rem;
+}
+
+/* Esfera de Cristal Decorativa */
+.bola-adivinacion {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #e0c3fc, #8ec5fc);
+    box-shadow: inset -5px -5px 15px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(142, 197, 252, 0.4);
+}
+
+/* Botón Púrpura */
+.btn-accion-mistica,
+.boton-morado {
+    background-color: #6f42c1;
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-accion-mistica:hover,
+.boton-morado:hover {
+    background-color: #59319d;
+    color: white;
+    box-shadow: 0 5px 15px rgba(111, 66, 193, 0.4);
+}
+
+.texto-morado {
+    color: #6f42c1;
+}
+
+.texto-peso-medio {
+    font-weight: 500;
+}
+
+/* Recuadro de Predicción */
+.contenedor-prediccion {
+    background-color: #eefbe8;
+    border-left: 4px solid #198754;
+    border-radius: 8px;
+}
+
+/* Tarjetas Informativas (Color & Animal) */
+.tarjeta-informacion {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+}
+
+/* Punto de Color Seleccionado */
+.circulo-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #198754;
+}
+
+/* Mapeo simple de clases de colores */
+.bg-rojo {
+    background-color: #dc3545 !important;
+}
+
+.bg-azul {
+    background-color: #0d6efd !important;
+}
+
+.bg-verde {
+    background-color: #198754 !important;
+}
+
+.bg-morado {
+    background-color: #6f42c1 !important;
+}
+
+.bg-amarillo {
+    background-color: #ffc107 !important;
+}
+
+/* Número de la suerte */
+.circulo-numero-suerte {
+    width: 60px;
+    height: 60px;
+    background-color: #6f42c1;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(111, 66, 193, 0.3);
+}
+
+/* Recuadro de Edad */
+.bloque-edad {
+    background-color: #f8f9fa;
+    border-left: 3px solid #6f42c1;
+    border-radius: 8px;
+}
