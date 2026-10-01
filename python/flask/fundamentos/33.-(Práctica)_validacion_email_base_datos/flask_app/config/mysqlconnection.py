@@ -1,84 +1,258 @@
-import pymysql.cursors
+import re
+
+from flask import flash
+
+from flask_app.config.mysqlconnection import connectToMySQL
 
 
-class MySQLConnection:
+# ==========================================================
+# EXPRESIÓN REGULAR PARA EMAIL
+# ==========================================================
+
+EMAIL_REGEX = re.compile(
+    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+)
+
+
+class Usuario:
     """
-    Administra la conexión entre Flask y MySQL.
+    Representa un registro de la tabla usuarios.
     """
 
-    def __init__(self, db):
-        self.connection = pymysql.connect(
-            host="localhost",
-            user="root",
-            password="1234",
-            database=db,
-            charset="utf8mb4",
-            cursorclass=pymysql.cursors.DictCursor,
-            autocommit=True
+    def __init__(self, data):
+        self.id = data["id"]
+        self.nombre = data["nombre"]
+        self.apellido = data["apellido"]
+        self.email = data["email"]
+        self.created_at = data["created_at"]
+        self.updated_at = data["updated_at"]
+
+
+    # ======================================================
+    # VALIDACIÓN
+    # ======================================================
+
+    @staticmethod
+    def validar_usuario(usuario):
+        """
+        Comprueba que los datos recibidos
+        cumplan las reglas del formulario.
+
+        Retorna:
+            True  → datos válidos.
+            False → existen errores.
+        """
+
+        es_valido = True
+
+
+        # --------------------------------------------------
+        # NOMBRE
+        # --------------------------------------------------
+
+        if not usuario["nombre"]:
+
+            flash(
+                "El nombre es obligatorio.",
+                "nombre"
+            )
+
+            es_valido = False
+
+
+        # --------------------------------------------------
+        # APELLIDO
+        # --------------------------------------------------
+
+        if not usuario["apellido"]:
+
+            flash(
+                "El apellido es obligatorio.",
+                "apellido"
+            )
+
+            es_valido = False
+
+
+        # --------------------------------------------------
+        # EMAIL
+        # --------------------------------------------------
+
+        if not usuario["email"]:
+
+            flash(
+                "El email es obligatorio.",
+                "email"
+            )
+
+            es_valido = False
+
+        elif not EMAIL_REGEX.match(
+            usuario["email"]
+        ):
+
+            flash(
+                "El email no tiene un formato válido.",
+                "email"
+            )
+
+            es_valido = False
+
+
+        return es_valido
+
+
+    # ======================================================
+    # READ — TODOS LOS USUARIOS
+    # ======================================================
+
+    @classmethod
+    def get_all(cls):
+        """
+        Obtiene todos los usuarios.
+        """
+
+        query = """
+            SELECT
+                id,
+                nombre,
+                apellido,
+                email,
+                created_at,
+                updated_at
+            FROM usuarios
+            ORDER BY id DESC;
+        """
+
+
+        resultados = connectToMySQL(
+            "esquema_usuarios"
+        ).query_db(query)
+
+
+        usuarios = []
+
+
+        for usuario in resultados:
+
+            usuarios.append(
+                cls(usuario)
+            )
+
+
+        return usuarios
+
+
+    # ======================================================
+    # READ — USUARIO POR ID
+    # ======================================================
+
+    @classmethod
+    def get_by_id(cls, id):
+        """
+        Obtiene un usuario por su identificador.
+        """
+
+        query = """
+            SELECT
+                id,
+                nombre,
+                apellido,
+                email,
+                created_at,
+                updated_at
+            FROM usuarios
+            WHERE id = %(id)s;
+        """
+
+
+        data = {
+            "id": id
+        }
+
+
+        resultados = connectToMySQL(
+            "esquema_usuarios"
+        ).query_db(
+            query,
+            data
         )
 
 
-    def query_db(self, query, data=None):
+        if resultados:
+
+            return cls(
+                resultados[0]
+            )
+
+
+        return None
+
+
+    # ======================================================
+    # BONUS — EMAIL ÚNICO
+    # ======================================================
+
+    @classmethod
+    def email_existe(cls, email):
         """
-        Ejecuta una consulta SQL.
-
-        SELECT:
-            devuelve una lista de diccionarios.
-
-        INSERT:
-            devuelve el ID generado.
-
-        UPDATE / DELETE:
-            devuelve las filas afectadas.
-
-        Error:
-            devuelve False.
+        Comprueba si un email ya se encuentra
+        registrado en la base de datos.
         """
 
-        with self.connection.cursor() as cursor:
-
-            try:
-
-                cursor.execute(
-                    query,
-                    data
-                )
+        query = """
+            SELECT
+                id
+            FROM usuarios
+            WHERE email = %(email)s;
+        """
 
 
-                tipo_consulta = query.strip().lower()
+        data = {
+            "email": email
+        }
 
 
-                if tipo_consulta.startswith("select"):
-
-                    return cursor.fetchall()
-
-
-                if tipo_consulta.startswith("insert"):
-
-                    return cursor.lastrowid
+        resultados = connectToMySQL(
+            "esquema_usuarios"
+        ).query_db(
+            query,
+            data
+        )
 
 
-                return cursor.rowcount
+        return bool(resultados)
 
 
-            except Exception as e:
+    # ======================================================
+    # CREATE
+    # ======================================================
 
-                print(
-                    "Something went wrong:",
-                    e
-                )
+    @classmethod
+    def save(cls, data):
+        """
+        Guarda un nuevo usuario.
+        """
 
-                return False
+        query = """
+            INSERT INTO usuarios
+            (
+                nombre,
+                apellido,
+                email
+            )
+            VALUES
+            (
+                %(nombre)s,
+                %(apellido)s,
+                %(email)s
+            );
+        """
 
 
-            finally:
-
-                self.connection.close()
-
-
-def connectToMySQL(db):
-    """
-    Devuelve una instancia de conexión a MySQL.
-    """
-
-    return MySQLConnection(db)
+        return connectToMySQL(
+            "esquema_usuarios"
+        ).query_db(
+            query,
+            data
+        )
