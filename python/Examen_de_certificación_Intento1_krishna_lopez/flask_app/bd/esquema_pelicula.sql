@@ -1,0 +1,37 @@
+CREATE DATABASE IF NOT EXISTS esquema_peliculas;
+USE esquema_peliculas;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    contrasena VARCHAR(250) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS peliculas (
+    id_pelicula INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    director VARCHAR(100) NOT NULL,
+    fecha_estreno VARCHAR(100) NOT NULL UNIQUE,
+    sinopsis VARCHAR(250) NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    usuario_id INT NOT NULL,
+    FOREIGN KEY(usuario_id) REFERENCES usuarios(id_usuario)
+);
+
+CREATE TABLE IF NOT EXISTS comentarios (
+    id_comentario INT AUTO_INCREMENT PRIMARY KEY,
+    fecha VARCHAR(100) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    contenido VARCHAR(100) NOT NULL UNIQUE,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    usuario_id INT NOT NULL,
+    pelicula_id INT NOT NULL,
+    FOREIGN KEY(usuario_id) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY(pelicula_id) REFERENCES peliculas(id_pelicula)
+);
